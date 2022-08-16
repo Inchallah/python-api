@@ -8,6 +8,6 @@ git clone git@github.com:Inchallah/python-api.git
 
 docker image build -t python-docker:0.1.0
 
-docker run -p 80:5000 -d --name python-app python-docker
+docker run -p 5000:5000 -d --name python-app python-docker:0.1.0
 
-go to localhost/prout/albertq
+curl localhost:5000/prout/albertq
