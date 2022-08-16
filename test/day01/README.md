@@ -2,6 +2,12 @@ Pré-requisite
 
 Créer kubernetes sur gcp
 
+node-pool info :
+    - nom test-pool-01
+    - machine e2 small
+    - 2 nodes
+    - vm spot
+
 Envoyer les yaml à mon repo albertq va lire avec ses beaux yeux
 
 Faire un dossier par achievement
