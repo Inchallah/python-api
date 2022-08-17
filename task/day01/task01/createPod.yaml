@@ -1,0 +1,28 @@
+# Kubernetes version used
+apiVersion: v1
+# Resource created
+kind: Pod
+# Metadata properties
+metadata:
+  # Name of pod
+  name: test-pod-01
+spec:
+  # Containers in pod
+  containers:
+    # Name of container
+    - name: test-container-01
+      # Image to use for container
+      image: 28a3c4c50c4d/python-docker:0.1.0
+      # Port to open
+      ports:
+        - containerPort: 5000
+      # Pods lifecycle check
+      livenessProbe:
+        # Ensure python app is running
+        httpGet:
+          path: /prout/albertq
+          port: 5000
+        # Time till kubelet tries pod
+        initialDelaySeconds: 120
+        # Delta between 2 check
+        periodSeconds: 120

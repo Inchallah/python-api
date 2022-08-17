@@ -1,0 +1,112 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test-pod-01","namespace":"test-ns-01"},"spec":{"containers":[{"image":"28a3c4c50c4d/python-docker:0.1.0","livenessProbe":{"httpGet":{"path":"/prout/albertq","port":5000},"initialDelaySeconds":120,"periodSeconds":120},"name":"test-container-01","ports":[{"containerPort":5000}]}]}}
+  creationTimestamp: "2022-08-17T07:52:48Z"
+  name: test-pod-01
+  namespace: test-ns-01
+  resourceVersion: "425593"
+  uid: 6a1d0b87-5750-4676-95fe-cd6668f679fa
+spec:
+  containers:
+  - image: 28a3c4c50c4d/python-docker:0.1.0
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /prout/albertq
+        port: 5000
+        scheme: HTTP
+      initialDelaySeconds: 120
+      periodSeconds: 120
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: test-container-01
+    ports:
+    - containerPort: 5000
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-6qbq9
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: gke-test-cluster-01-test-pool-01-123a4a64-3809
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-6qbq9
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2022-08-17T07:52:48Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2022-08-17T07:52:49Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2022-08-17T07:52:49Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2022-08-17T07:52:48Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://d4e6ee1509046c112008bcf350227262573f4231fa3e873ad4d1f9db5215cd20
+    image: docker.io/28a3c4c50c4d/python-docker:0.1.0
+    imageID: docker.io/28a3c4c50c4d/python-docker@sha256:8d138e434c8493f50afea89b46422673640fdca5617978ac4d4dfcf816073d98
+    lastState: {}
+    name: test-container-01
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2022-08-17T07:52:49Z"
+  hostIP: 10.132.0.8
+  phase: Running
+  podIP: 10.8.1.6
+  podIPs:
+  - ip: 10.8.1.6
+  qosClass: BestEffort
+  startTime: "2022-08-17T07:52:48Z"

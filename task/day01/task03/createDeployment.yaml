@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+# Deployment
+kind: Deployment
+metadata:
+  name: test-dep-01
+  namespace: test-ns-02
+spec:
+  replicas: 4
+  # Will select label
+  selector:
+    matchLabels:
+      app: python-docker
+  # Pod
+  template:
+    metadata:
+      # label to specify in order to be retrieved by the Deployment
+      labels:
+        app: python-docker
+    spec:
+      containers:
+        - name: test-container-01
+          image: 28a3c4c50c4d/python-docker:0.1.0
+          ports:
+            - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /prout/albertq
+              port: 5000
+            initialDelaySeconds: 120
+            periodSeconds: 120
