@@ -1,0 +1,44 @@
+Name:         test-pod-01
+Namespace:    default
+Priority:     0
+Node:         gke-test-cluster-01-test-pool-01-123a4a64-3809/10.132.0.8
+Start Time:   Wed, 17 Aug 2022 09:20:57 +0200
+Labels:       <none>
+Annotations:  <none>
+Status:       Running
+IP:           10.8.1.5
+IPs:
+  IP:  10.8.1.5
+Containers:
+  test-container-01:
+    Container ID:   containerd://efc96bd3da7fb5b2878ea72baec4af2598399bb6e8e42723d95bd17de261dcca
+    Image:          28a3c4c50c4d/python-docker:0.1.0
+    Image ID:       docker.io/28a3c4c50c4d/python-docker@sha256:8d138e434c8493f50afea89b46422673640fdca5617978ac4d4dfcf816073d98
+    Port:           5000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 17 Aug 2022 09:20:58 +0200
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:5000/prout/albertq delay=120s timeout=1s period=120s #success=1 #failure=3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bz9wx (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-bz9wx:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

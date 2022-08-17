@@ -37,7 +37,7 @@ kubectl apply -f task/day01/task02/createNamespace.yaml
 kubectl apply -f task/day01/task02/createPod.yaml
 
 kubectl get namespaces test-ns-01 -o yaml > task/day01/task02/namespaceStatus.yaml
-kubectl get pods test-pod-01 -namespace=test-ns-01 -o yaml > task/day01/task02/podStatus.yaml
+kubectl -n test-ns-01 get pods test-pod-01 -o yaml > task/day01/task02/podStatus.yaml
 ```
 
 [*] Créer un deployment de mon application "python-docker"
@@ -62,7 +62,7 @@ kubectl -n test-ns-02 get deployment test-dep-01 -o yaml > task/day01/namespaceS
 
 [*] Créer un service de type "Cluster IP" nommé "test-service"
 
-pointe vers le Déployment "test-dep-01" "test-ns-02"
+pointe vers le Déployment "test-dep-02" "test-ns-02"
 
 Resultat :
 
@@ -73,7 +73,7 @@ kubectl apply -f task/day01/task04/createDeployment.yaml
 
 kubectl -n test-ns-02 get services test-service -o yaml > task/day01/task04/serviceStatus.yaml
 
-kubectl -n test-ns-02 get deployments.app test-service -o yaml > task/day01/task04/serviceStatus.yaml
+kubectl -n test-ns-02 get deployments.app test-dep-02 -o yaml > task/day01/task04/serviceStatus.yaml
 
 
 kubectl -n test-ns-02 port-forward services/test-service 5000:5000
@@ -83,3 +83,12 @@ Term 2
 ```bash
 curl 127.0.0.1:5000/prout/albertq
 ```
+
+
+Probes :
+
+Probe startup -> Node lancé ?
+
+Probe readiness -> Node lancé, app ready ?
+
+Probe lifecycle -> Node lancé, app ready, working ?

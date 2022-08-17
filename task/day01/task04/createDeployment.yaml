@@ -23,9 +23,27 @@ spec:
           image: 28a3c4c50c4d/python-docker:0.1.0
           ports:
             - containerPort: 5000
+
+          # Node startup
+          startupProbe:
+            httpGet:
+              path: /prout/albertq
+              port: 5000
+            failureThreshold: 5
+            periodSeconds: 10
+
+          # Node started but app ready ?
+          readinessProbe:
+            httpGet:
+              path: /prout/albertq
+              port: 5000
+            initialDelaySeconds: 1
+            periodSeconds: 20
+
+          # Node started and app ready, check-up
           livenessProbe:
             httpGet:
               path: /prout/albertq
               port: 5000
-            initialDelaySeconds: 120
+            initialDelaySeconds: 5
             periodSeconds: 120
