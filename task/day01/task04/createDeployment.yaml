@@ -46,4 +46,4 @@ spec:
               path: /prout/albertq
               port: 5000
             initialDelaySeconds: 5
-            periodSeconds: 120
+            periodSeconds: 10
