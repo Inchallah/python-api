@@ -84,6 +84,9 @@ Term 2
 curl 127.0.0.1:5000/prout/albertq
 ```
 
+[] Une route python doit renvoyer un envar local, un envar configmap et un envar secret
+
+
 
 Probes :
 

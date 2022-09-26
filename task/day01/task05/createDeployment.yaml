@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+# Deployment
+kind: Deployment
+metadata:
+  name: test-dep-03
+  namespace: test-ns-03
+spec:
+  replicas: 3
+  # Will select label
+  selector:
+    matchLabels:
+      app: python-docker
+  # Pod
+  template:
+    metadata:
+      # label to specify in order to be retrieved by the Deployment
+      labels:
+        app: python-docker
+
+    spec:
+      containers:
+        - name: test-container-02
+          image: 28a3c4c50c4d/python-docker:0.1.1
+          ports:
+            - containerPort: 5000
+
+          env:
+            - name: NAME
+              value: "joli nom"
+            # envar sender
+            - name: SENDER
+              valueFrom:
+                configMapKeyRef:
+                  name: test-cmap-01
+                  key: sender
+
+            - name: MESSAGE
+              valueFrom:
+                secretKeyRef:
+                  name: secul
+                  key: message
+
+          livenessProbe:
+            httpGet:
+              path: /state
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          # startupProbe:
+          #   exec:
+          #     command:
+          #       - "echo $NAME ; echo $MESSAGE ; echo $SENDER"
+          #   initialDelaySeconds: 1
+          #   failureThreshold: 5
+          #   periodSeconds: 10

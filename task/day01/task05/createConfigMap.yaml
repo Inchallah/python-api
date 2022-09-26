@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-cmap-01
+  namespace: test-ns-03
+data:
+  sender: "chatte"
