@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: test-container-02
-          image: 28a3c4c50c4d/python-docker:0.1.1
+          image: 28a3c4c50c4d/python-docker:0.1.2
           ports:
             - containerPort: 5000
 
