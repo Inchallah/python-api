@@ -5,7 +5,7 @@ metadata:
   namespace: test-ns-03
 spec:
   selector:
-    app: python-docker
+    app: python
   ports:
     - port: 5000
       targetPort: 5000
